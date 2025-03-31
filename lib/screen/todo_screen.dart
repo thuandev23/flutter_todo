@@ -53,7 +53,19 @@ class TodoScreen extends StatelessWidget {
                       onChanged: (value) => taskController.toggleTask(index),
                     ),
                     trailing: IconButton(
-                      onPressed: () => taskController.removeTask(index),
+                      onPressed:
+                          () => Get.defaultDialog(
+                            title: "Delete Task",
+                            middleText: "Do you want to delete task ?",
+                            textConfirm: "Yes",
+                            textCancel: "No",
+                            onConfirm: () {
+                              taskController.removeTask(index);
+                              Get.back();
+                            },
+                            onCancel: () {},
+                          ),
+
                       icon: Icon(Icons.delete),
                     ),
                   );
